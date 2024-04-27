@@ -7,7 +7,7 @@ if [ "$(id -u)" != "0" ]; then
     exit 1
 fi
 
- 节点安装功能
+# 节点安装功能
 function install_node() {
 
 # 更新系统包列表
