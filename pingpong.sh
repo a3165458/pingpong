@@ -40,17 +40,26 @@ else
 fi
 
 #获取运行文件
-read -p "请输入你的key device id:" your_device_id
-export keyid=$your_device_id
+read -p "请输入你的key device id: " your_device_id
+
+keyid="$your_device_id"
+
+# 下载PINGPONG程序
 wget -O PINGPONG https://pingpong-build.s3.ap-southeast-1.amazonaws.com/linux/latest/PINGPONG
-screen -dmS pingpong bash -c "chmod +x ./PINGPONG && ./PINGPONG --key $keyid"
+
+if [ -f "./PINGPONG" ]; then
+    chmod +x ./PINGPONG
+    screen -dmS pingpong bash -c "./PINGPONG --key \"$keyid\""
+else
+    echo "下载PINGPONG失败，请检查网络连接或URL是否正确。"
+fi
 
  echo "节点已经启动，请使用screen -r pingpong 查看日志或使用脚本功能2"
 
 }
 
 function check_service_status() {
-    docker logs -f --tail 20 pingpong
+    screen -r pingpong
 }
 
 
