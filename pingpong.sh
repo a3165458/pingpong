@@ -12,6 +12,7 @@ function install_node() {
 
 # 更新系统包列表
 sudo apt update
+apt install screen -y
 
 # 检查 Docker 是否已安装
 if ! command -v docker &> /dev/null
@@ -34,7 +35,7 @@ then
     sudo apt-get update
 
     # 安装 Docker 最新版本
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin screen -y
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 else
     echo "Docker 已安装。"
 fi
