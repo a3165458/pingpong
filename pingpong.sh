@@ -63,6 +63,11 @@ function check_service_status() {
     screen -r pingpong
 }
 
+function reboot_pingpong() {
+    read -p "请输入你的key device id: " your_device_id
+    keyid="$your_device_id"
+    screen -dmS pingpong bash -c "./PINGPONG --key \"$keyid\""
+}
 
 
 # 主菜单
@@ -76,13 +81,13 @@ function main_menu() {
     echo "请选择要执行的操作:"
     echo "1. 安装节点"
     echo "2. 查看节点日志"
+    echo "3. 重启pingpong"
     read -p "请输入选项（1-3）: " OPTION
 
     case $OPTION in
     1) install_node ;;
     2) check_service_status ;;
-    3) check_and_set_alias ;; 
-
+    3) reboot_pingpong ;; 
     *) echo "无效选项。" ;;
     esac
 }
