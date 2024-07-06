@@ -69,6 +69,23 @@ function reboot_pingpong() {
     screen -dmS pingpong bash -c "./PINGPONG --key \"$keyid\""
 }
 
+function start_0g_pingpong() {
+    read -p "请输入你的0g私钥: " your_0g_key
+    keyid="$your_0g_key"
+    screen -dmS pingpong-0g bash -c "./PINGPONG config set --0g=$your_0g_key && ./PINGPONG start --depins=0g"
+}
+
+function start_aioz() {
+    read -p "请输入你的aioz私钥: " your_aioz_key
+    keyid="$your_aioz_key"
+    screen -dmS pingpong-aioz bash -c "./PINGPONG config set --aioz=$your_aioz_key && ./PINGPONG start --depins=aioz"
+}
+
+function start_grass() {
+    read -p "请输入你的grass私钥: " your_grass_key
+    keyid="$your_grass_key"
+    screen -dmS pingpong-grass bash -c "./PINGPONG config set --aioz=$your_grass_key && ./PINGPONG start --depins=grass"
+}
 
 # 主菜单
 function main_menu() {
@@ -82,12 +99,18 @@ function main_menu() {
     echo "1. 安装节点"
     echo "2. 查看节点日志"
     echo "3. 重启pingpong"
-    read -p "请输入选项（1-3）: " OPTION
+    echo "4. 启动pingpong-0g(需要自备私钥)"
+    echo "5. 启动pingpong-aioz(需要自备私钥)"
+    echo "6. 启动pingpong-grass(需要自备userid)"
+    read -p "请输入选项（1-6）: " OPTION
 
     case $OPTION in
     1) install_node ;;
     2) check_service_status ;;
     3) reboot_pingpong ;; 
+    4) start_0g_pingpong ;; 
+    5) start_aioz ;; 
+    6) start_grass ;; 
     *) echo "无效选项。" ;;
     esac
 }
