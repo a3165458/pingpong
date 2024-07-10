@@ -84,7 +84,7 @@ function start_aioz() {
 function start_grass() {
     read -p "请输入你的grass私钥: " your_grass_key
     keyid="$your_grass_key"
-    screen -dmS pingpong-grass bash -c "./PINGPONG config set --aioz=$your_grass_key && ./PINGPONG start --depins=grass"
+    screen -dmS pingpong-grass bash -c "./PINGPONG config set --grass=$your_grass_key && ./PINGPONG start --depins=grass"
 }
 
 # 主菜单
